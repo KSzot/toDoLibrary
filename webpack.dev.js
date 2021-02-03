@@ -12,6 +12,7 @@ module.exports = {
     main: './js/index.js',
     view: './js/view.js',
     model: './js/model.js',
+    fontAwe: './js/fontAwe.js',
   },
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
@@ -19,7 +20,7 @@ module.exports = {
       title: 'ProWik',
       template: './index.html',
       inject: true,
-      chunks: ['main', 'view', 'model'],
+      chunks: ['main', 'view', 'model', 'fontAwe'],
       filename: 'index.html',
     }),
   ],

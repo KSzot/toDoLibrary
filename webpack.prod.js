@@ -12,12 +12,13 @@ module.exports = {
     app: './js/index.js',
     view: './js/view.js',
     model: './js/model.js',
+    fontAwe: './js/fontAwe.js',
   },
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new HtmlWebpackPlugin({
       template: './index.html',
-      chunks: ['app', 'view', 'model'],
+      chunks: ['app', 'view', 'model', 'fontAwe'],
       filename: 'index.html',
     }),
     new MiniCssExtractPlugin({
