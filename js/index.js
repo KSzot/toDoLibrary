@@ -13,6 +13,7 @@ class Controller {
     this.model = model;
     this.view.bindAddBook(this.handleAddBook);
     this.model.bindToBooksListChanged(this.onListChanged);
+    this.view.bindSortColumn(this.handleSortColumn);
   }
 
   onListChanged = (lists) => {
@@ -21,9 +22,10 @@ class Controller {
 
   handleAddBook = (books) => {
     this.model.addBook(books);
-    //   } handleAddBook = (books) => {
-    //     console.log(books);
-    //   };
+  };
+
+  handleSortColumn = (columnName) => {
+    this.model.sortColumn(columnName);
   };
 }
 

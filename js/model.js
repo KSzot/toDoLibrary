@@ -1,22 +1,30 @@
 class Model {
   constructor() {
     this.lists = [];
-    //this.sortDirection = false;
+    this.sortDirection = false;
   }
 
   _commit = (lists) => {
     this.onListChanged(lists);
   };
 
+  sortColumn = (columnName) => {
+    this.sortDirection = !this.sortDirection;
+    this._sortColumn(columnName, this.sortDirection);
+    this._commit(this.lists);
+  };
+
   _sortColumn = (columnName, sortDirection) => {
-    const dataType = typeof this.lists[0][columnName];
-    switch (dataType) {
-      case 'number':
-        this._sortNumberColumn(sortDirection, columnName);
-        break;
-      case 'string':
-        this._sortStringColumn(sortDirection, columnName);
-        break;
+    if (this.lists.length > 0) {
+      const dataType = typeof this.lists[0][columnName];
+      switch (dataType) {
+        case 'number':
+          this._sortNumberColumn(sortDirection, columnName);
+          break;
+        case 'string':
+          this._sortStringColumn(sortDirection, columnName);
+          break;
+      }
     }
   };
 

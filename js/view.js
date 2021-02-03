@@ -67,6 +67,16 @@ class View {
     });
   };
 
+  bindSortColumn = (handler) => {
+    this.tableBook.tHead.rows.forEach((element) => {
+      element.addEventListener('click', (event) => {
+        event.preventDefault();
+        //console.log(event.target.dataset.value);
+        handler(event.target.dataset.value);
+      });
+    });
+  };
+
   displayBooks = (lists) => {
     this._clearDOM();
     this._generateTable(this.tableBook.lastElementChild, lists);
