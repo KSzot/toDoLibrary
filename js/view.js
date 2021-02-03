@@ -41,6 +41,21 @@ class View {
     }
   };
 
+  _clearDOM = () => {
+    while (this.tableBook.lastElementChild.firstChild) {
+      this.tableBook.lastElementChild.removeChild(
+        this.tableBook.lastElementChild.firstChild
+      );
+    }
+  };
+
+  _clearInput = () => {
+    this.authorInput.value = '';
+    this.bookInput.value = '';
+    this.categorySelect.selectedIndex = 0;
+    this.priority.selectedIndex = 0;
+  };
+
   bindAddBook = (handler) => {
     this.btnAdd.addEventListener('click', (event) => {
       event.preventDefault();
@@ -53,7 +68,9 @@ class View {
   };
 
   displayBooks = (lists) => {
+    this._clearDOM();
     this._generateTable(this.tableBook.lastElementChild, lists);
+    this._clearInput();
   };
 }
 
