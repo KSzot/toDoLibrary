@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+          <!-- Navbar brand -->
+          <div class="container">
+            <a class="navbar-brand" href="#">
+              <img
+                src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png"
+                height="30"
+                alt=""
+                loading="lazy"
+              />
+            </a>
+          </div>
+
+          <!-- Toggle button -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+
+          <!-- Collapsible wrapper -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item d-none">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+            </ul>
+            <!-- Left links -->
+
+            <!-- Search form -->
+            <form class="d-flex input-group w-auto">
+              <input
+                type="search"
+                class="form-control"
+                placeholder="Type query"
+                aria-label="Search"
+              />
+              <button
+                class="btn btn-outline-primary"
+                type="button"
+                data-mdb-ripple-color="dark"
+              >
+                Search
+              </button>
+            </form>
+          </div>
+          <!-- Collapsible wrapper -->
+        </div>
+        <!-- Container wrapper -->
+      </nav>
+      <!-- Navbar -->
+
+      <div class="container my-5">
+        <div class="row justify-content-center mb-3">
+          <div class="col-sm-12 col-md-6 col-lg-4 mb-2 mb-md-0">
+            <div class="form-outline">
+              <input type="text" id="book" class="form-control" />
+              <label class="form-label" for="form1">Tytuł ksiązki</label>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="form-outline">
+              <input type="text" id="author" class="form-control" />
+              <label class="form-label" for="form1">Autor</label>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-sm-12 col-md-6 col-lg-4 mb-2 mb-md-0">
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              id="category"
+            >
+              <option selected>Wybierz kategorię</option>
+              <option value="1">Kryminał</option>
+              <option value="2">Poezja</option>
+              <option value="3">Dramat</option>
+            </select>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-4">
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              id="priority"
+            >
+              <option selected>Wybierz piorytet</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12 col-lg-10 d-flex justify-content-end">
+            <button type="button" class="btn btn-primary me-3" id="btnAdd">
+              Dodaj ksiązkę
+            </button>
+            <button type="button" class="btn btn-warning" id="btnClearOne">
+              Wyczyść
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container mt-3">
+        <p class="text-start">Licznik pozycji: 0</p>
+      </div>
+
+      <div class="container">
+        <table class="table table-hover table-sm" id="tableBook">
+          <thead>
+            <tr>
+              <!-- <th scope="col" class="smallPadding">#</th> -->
+              <th scope="col" class="smallPadding">Tytuł książki</th>
+              <th scope="col" class="smallPadding">Autor</th>
+              <th scope="col" class="smallPadding">Kategoria</th>
+              <th scope="col" class="smallPadding">Piorytet</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr>
+              <th scope="row" class="smallPadding">1</th>
+              <td class="text-wrap text-break smallPadding">
+                Marddddddddddddddddddk
+              </td>
+              <td class="text-wrap text-break smallPadding">
+                Otdddddddddddddddddddddto
+              </td>
+              <td class="text-wrap text-break smallPadding">
+                @mddddddddddddddddddo
+              </td>
+              <td class="text-wrap text-break smallPadding">
+                @mdodfgdffffffffffffffffffffffffffffffgfdgdfgdf
+              </td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

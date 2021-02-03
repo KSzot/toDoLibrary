@@ -1,0 +1,7 @@
+@import '~mdb-ui-kit/css/mdb.min.css';
+
+.smallPadding {
+  @media only screen and (max-width: 600px) {
+    padding: 0.3rem 0.3rem !important;
+  }
+}
