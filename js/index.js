@@ -14,6 +14,8 @@ class Controller {
     this.view.bindAddBook(this.handleAddBook);
     this.model.bindToBooksListChanged(this.onListChanged);
     this.view.bindSortColumn(this.handleSortColumn);
+    this.view.bindSearchInput(this.handleSearchInput);
+    //this.view.windowsTarget();
   }
 
   onListChanged = (lists) => {
@@ -26,6 +28,10 @@ class Controller {
 
   handleSortColumn = (columnName) => {
     this.model.sortColumn(columnName);
+  };
+
+  handleSearchInput = (value) => {
+    this.model.filterByValue(value, 'author');
   };
 }
 

@@ -7,6 +7,7 @@ class View {
     this.btnAdd = document.getElementById('btnAdd');
     this.btnClearOne = document.getElementById('btnClearOne');
     this.tableBook = document.getElementById('tableBook');
+    this.searchInput = document.getElementById('searchInput');
   }
 
   _getValues = () => {
@@ -74,6 +75,21 @@ class View {
         //console.log(event.target.dataset.value);
         handler(event.target.dataset.value);
       });
+    });
+  };
+
+  bindSearchInput = (handler) => {
+    this.searchInput.addEventListener('input', (event) => {
+      handler(event.target.value);
+    });
+    // this.searchInput.addEventListener('click', (event) => {
+    //   handler(event.target.value);
+    // });
+  };
+
+  windowsTarget = () => {
+    window.addEventListener('click', (event) => {
+      console.log(event.target);
     });
   };
 

@@ -2,6 +2,7 @@ class Model {
   constructor() {
     this.lists = [];
     this.sortDirection = false;
+    this.temporaryList = [];
   }
 
   _commit = (lists) => {
@@ -9,6 +10,10 @@ class Model {
   };
 
   sortColumn = (columnName) => {
+    //this.temporaryList = this.lists;
+    // if (this.temporaryList.length == 0) {
+    //   this.temporaryList = [...this.lists];
+    // }
     this.sortDirection = !this.sortDirection;
     this._sortColumn(columnName, this.sortDirection);
     this._commit(this.lists);
@@ -72,6 +77,19 @@ class Model {
     this.lists.push(element);
     this._sortColumn('priority', false);
     this._commit(this.lists);
+  };
+
+  filterByValue = (value, columnName) => {
+    console.log(value);
+    this.temporaryList = [
+      ...this.lists.filter((obj) =>
+        Object.keys(obj).some((key) =>
+          obj[columnName].toLowerCase().includes(value.toLowerCase())
+        )
+      ),
+    ];
+    //this._commit(this.temporaryList);
+    this._commit(this.temporaryList);
   };
 }
 
