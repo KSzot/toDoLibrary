@@ -9,3 +9,19 @@
 .cursorPointer {
   cursor: pointer;
 }
+
+.lessWidth {
+  width: auto;
+  @media only screen and (max-width: 991px) {
+    width: 30%;
+  }
+  @media only screen and (max-width: 767px) {
+    width: 35%;
+  }
+  @media only screen and (max-width: 600px) {
+    width: 50%;
+  }
+  @media only screen and (max-width: 360px) {
+    width: 70%;
+  }
+}

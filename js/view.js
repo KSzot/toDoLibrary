@@ -8,6 +8,7 @@ class View {
     this.btnClearOne = document.getElementById('btnClearOne');
     this.tableBook = document.getElementById('tableBook');
     this.searchInput = document.getElementById('searchInput');
+    this.categoryFilter = document.getElementById('categoryFilter');
   }
 
   _getValues = () => {
@@ -80,7 +81,12 @@ class View {
 
   bindSearchInput = (handler) => {
     this.searchInput.addEventListener('input', (event) => {
-      handler(event.target.value);
+      if (this.categoryFilter.selectedIndex != 0) {
+        const columnName = this.categoryFilter[
+          this.categoryFilter.selectedIndex
+        ].dataset.value;
+        handler(event.target.value, columnName);
+      }
     });
     // this.searchInput.addEventListener('click', (event) => {
     //   handler(event.target.value);

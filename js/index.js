@@ -30,8 +30,8 @@ class Controller {
     this.model.sortColumn(columnName);
   };
 
-  handleSearchInput = (value) => {
-    this.model.filterByValue(value, 'author');
+  handleSearchInput = (value, columnName) => {
+    this.model.filterByValue(value, columnName);
   };
 }
 
