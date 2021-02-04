@@ -73,6 +73,7 @@ class Model {
       author: author,
       category: category,
       priority: parseInt(priority),
+      id: new Date().getTime(),
     };
     this.lists.push(element);
     this._sortColumn('priority', false);

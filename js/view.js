@@ -9,6 +9,7 @@ class View {
     this.tableBook = document.getElementById('tableBook');
     this.searchInput = document.getElementById('searchInput');
     this.categoryFilter = document.getElementById('categoryFilter');
+    this.itemCounter = document.getElementById('itemCounter');
   }
 
   _getValues = () => {
@@ -35,10 +36,12 @@ class View {
     for (let element of data) {
       let row = table.insertRow();
       for (const key in element) {
-        let cell = row.insertCell();
-        cell.classList.add('text-wrap', 'text-break', 'smallPadding');
-        let text = document.createTextNode(element[key]);
-        cell.appendChild(text);
+        if (key != 'id') {
+          let cell = row.insertCell();
+          cell.classList.add('text-wrap', 'text-break', 'smallPadding');
+          let text = document.createTextNode(element[key]);
+          cell.appendChild(text);
+        }
       }
     }
   };
@@ -56,6 +59,10 @@ class View {
     this.bookInput.value = '';
     this.categorySelect.selectedIndex = 0;
     this.priority.selectedIndex = 0;
+  };
+
+  _changeItemCounter = (value) => {
+    this.itemCounter.textContent = `Licznik pozycji: ${value}`;
   };
 
   bindAddBook = (handler) => {
@@ -102,6 +109,7 @@ class View {
   displayBooks = (lists) => {
     this._clearDOM();
     this._generateTable(this.tableBook.lastElementChild, lists);
+    this._changeItemCounter(lists.length);
     this._clearInput();
   };
 }
