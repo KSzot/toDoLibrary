@@ -41,26 +41,25 @@
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <select
-                  class="form-select lessWidth"
-                  aria-label="Default select example"
-                  id="categoryFilter"
-                >
-                  <option selected>Wybierz</option>
-                  <option value="1" data-value="title">Tytuł ksiązki</option>
-                  <option value="2" data-value="author">Autor</option>
-                  <option value="3" data-value="category">Kategoria</option>
-                </select>
+                <a class="nav-link" aria-current="page" href="#">Usuń zbiór</a>
               </li>
               <li class="nav-item d-none">
                 <a class="nav-link" href="#">Link</a>
               </li>
             </ul>
             <!-- Left links -->
-
+            <div class="d-flex input-group lessWidth me-lg-2 mb-2 mb-lg-0">
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                id="categoryFilter"
+              >
+                <option selected>Wybierz</option>
+                <option value="1" data-value="title">Tytuł ksiązki</option>
+                <option value="2" data-value="author">Autor</option>
+                <option value="3" data-value="category">Kategoria</option>
+              </select>
+            </div>
             <!-- Search form -->
             <form class="d-flex input-group lessWidth">
               <input
@@ -123,11 +122,26 @@
         </div>
         <div class="row mt-3">
           <div class="col-12 col-lg-10 d-flex justify-content-end">
-            <button type="button" class="btn btn-primary me-3" id="btnAdd">
+            <button
+              type="button"
+              class="btn btn-primary me-2 d-none"
+              id="btnUpdate"
+            >
+              Aktualizuj
+            </button>
+
+            <button type="button" class="btn btn-success me-2" id="btnAdd">
               Dodaj ksiązkę
             </button>
             <button type="button" class="btn btn-warning" id="btnClearOne">
               Wyczyść
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger ms-2 d-none"
+              id="btnDelete"
+            >
+              Usuń
             </button>
           </div>
         </div>

@@ -10,6 +10,8 @@ class View {
     this.searchInput = document.getElementById('searchInput');
     this.categoryFilter = document.getElementById('categoryFilter');
     this.itemCounter = document.getElementById('itemCounter');
+    this.btnUpdate = document.getElementById('btnUpdate');
+    this.btnDelete = document.getElementById('btnDelete');
   }
 
   _getValues = () => {
@@ -39,6 +41,7 @@ class View {
         if (key != 'id') {
           let cell = row.insertCell();
           cell.classList.add('text-wrap', 'text-break', 'smallPadding');
+          cell.setAttribute('data-value', element.id);
           let text = document.createTextNode(element[key]);
           cell.appendChild(text);
         }
@@ -63,6 +66,23 @@ class View {
 
   _changeItemCounter = (value) => {
     this.itemCounter.textContent = `Licznik pozycji: ${value}`;
+  };
+
+  _displayNone(element) {
+    element.classList.remove('d-inline-block');
+    element.classList.add('d-none');
+  }
+  _displayInline(element) {
+    element.classList.add('d-inline-block');
+    element.classList.remove('d-none');
+  }
+
+  _setValueonFormSelected = (selectForm, name) => {
+    selectForm.forEach((element, index) => {
+      if (element.text == name) {
+        selectForm.selectedIndex = index;
+      }
+    });
   };
 
   bindAddBook = (handler) => {
@@ -100,6 +120,22 @@ class View {
     // });
   };
 
+  bindEditOrDeleteItem = (handler) => {
+    this.tableBook.lastElementChild.addEventListener('click', (event) => {
+      const id = event.target.dataset.value;
+      this._displayNone(this.btnAdd);
+      this._displayInline(this.btnDelete);
+      this._displayInline(this.btnUpdate);
+      handler(id);
+    });
+  };
+
+  bindClearInput = () => {
+    this.btnClearOne.addEventListener('click', () => {
+      console.log('Wkrotce powstanie');
+    });
+  };
+
   windowsTarget = () => {
     window.addEventListener('click', (event) => {
       console.log(event.target);
@@ -111,6 +147,27 @@ class View {
     this._generateTable(this.tableBook.lastElementChild, lists);
     this._changeItemCounter(lists.length);
     this._clearInput();
+  };
+  onInsertToInput = (obj) => {
+    this.authorInput.value = obj.author;
+    this.bookInput.value = obj.title;
+
+    this._setValueonFormSelected(this.categorySelect, obj.category);
+    this._setValueonFormSelected(this.priority, obj.priority);
+  };
+
+  bindUpdateBook = (handler) => {
+    this.btnUpdate.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (this._getValues()) {
+        handler(this._getValues());
+        this._displayNone(this.btnUpdate);
+        this._displayNone(this.btnDelete);
+        this._displayInline(this.btnAdd);
+      } else {
+        alert('Uzupełnij pola');
+      }
+    });
   };
 }
 

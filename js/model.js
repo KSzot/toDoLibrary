@@ -92,6 +92,31 @@ class Model {
     //this._commit(this.temporaryList);
     this._commit(this.temporaryList);
   };
+
+  onCurrentItem = (id, handler) => {
+    this.currentItem = id;
+    const obj = this.lists.find((e) => e.id == id);
+    console.log(obj);
+    handler(obj);
+  };
+
+  onUpdateBook = (obj) => {
+    console.log(obj);
+    this.lists = this.lists.map((el) =>
+      el.id == this.currentItem
+        ? {
+            title: obj.title,
+            author: obj.author,
+            category: obj.category,
+            priority: parseInt(obj.priority),
+            id: this.currentItem,
+          }
+        : el
+    );
+    console.log(this.lists);
+    this._sortColumn('priority', false);
+    this._commit(this.lists);
+  };
 }
 
 export const model = new Model();

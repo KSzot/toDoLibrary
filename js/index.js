@@ -15,6 +15,9 @@ class Controller {
     this.model.bindToBooksListChanged(this.onListChanged);
     this.view.bindSortColumn(this.handleSortColumn);
     this.view.bindSearchInput(this.handleSearchInput);
+    this.view.bindEditOrDeleteItem(this.handleCurrentItem);
+    this.view.bindClearInput();
+    this.view.bindUpdateBook(this.handleUpdateBook);
     //this.view.windowsTarget();
   }
 
@@ -32,6 +35,13 @@ class Controller {
 
   handleSearchInput = (value, columnName) => {
     this.model.filterByValue(value, columnName);
+  };
+
+  handleCurrentItem = (id) => {
+    this.model.onCurrentItem(id, this.view.onInsertToInput);
+  };
+  handleUpdateBook = (book) => {
+    this.model.onUpdateBook(book);
   };
 }
 
