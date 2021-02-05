@@ -1,3 +1,5 @@
+import { Modal } from 'mdb-ui-kit';
+
 class View {
   constructor() {
     this.authorInput = document.getElementById('author');
@@ -12,6 +14,8 @@ class View {
     this.itemCounter = document.getElementById('itemCounter');
     this.btnUpdate = document.getElementById('btnUpdate');
     this.btnDelete = document.getElementById('btnDelete');
+    this.btnShowModal = document.getElementById('btnShowModal');
+    this.btnDeleteAll = document.getElementById('btnDeleteAll');
   }
 
   _getValues = () => {
@@ -181,6 +185,20 @@ class View {
       this._displayNone(this.btnUpdate);
       this._displayNone(this.btnDelete);
       this._displayInline(this.btnAdd);
+    });
+  };
+
+  showModal = () => {
+    this.btnShowModal.addEventListener('click', () => {
+      const myModalEl = document.getElementById('exampleModal');
+      const modal = new Modal(myModalEl);
+      modal.show();
+    });
+  };
+
+  bindDeleteAllBook = (handler) => {
+    this.btnDeleteAll.addEventListener('click', () => {
+      handler();
     });
   };
 }

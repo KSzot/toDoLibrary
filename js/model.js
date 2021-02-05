@@ -122,6 +122,11 @@ class Model {
     this._sortColumn('priority', false);
     this._commit(this.lists);
   };
+
+  onDeleteAllBook = () => {
+    this.lists = [];
+    this._commit(this.lists);
+  };
 }
 
 export const model = new Model();

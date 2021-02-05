@@ -41,7 +41,13 @@
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Usuń zbiór</a>
+                <a
+                  class="nav-link"
+                  aria-current="page"
+                  href="#"
+                  id="btnShowModal"
+                  >Usuń zbiór</a
+                >
               </li>
               <li class="nav-item d-none">
                 <a class="nav-link" href="#">Link</a>
@@ -204,6 +210,49 @@
             </tr> -->
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Uwaga</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-mdb-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Czy na pewno chcesz usunąć zbiór zapisanych pozycji ?
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              data-mdb-dismiss="modal"
+              class="btn btn-danger"
+              id="btnDeleteAll"
+            >
+              Usuń
+            </button>
+            <button
+              type="button"
+              class="btn btn-warning"
+              data-mdb-dismiss="modal"
+            >
+              Anuluj
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </body>

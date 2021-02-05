@@ -20,6 +20,8 @@ class Controller {
     this.view.bindUpdateBook(this.handleUpdateBook);
     this.onListChanged(this.model.lists);
     this.view.bindDeleteBook(this.handleDeleteBook);
+    this.view.showModal();
+    this.view.bindDeleteAllBook(this.handleDeleteAllBook);
     //this.view.windowsTarget();
   }
 
@@ -48,6 +50,10 @@ class Controller {
 
   handleDeleteBook = () => {
     this.model.onDeleteBook();
+  };
+
+  handleDeleteAllBook = () => {
+    this.model.onDeleteAllBook();
   };
 }
 
