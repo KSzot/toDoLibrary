@@ -173,6 +173,16 @@ class View {
       }
     });
   };
+
+  bindDeleteBook = (handler) => {
+    this.btnDelete.addEventListener('click', (event) => {
+      event.preventDefault();
+      handler();
+      this._displayNone(this.btnUpdate);
+      this._displayNone(this.btnDelete);
+      this._displayInline(this.btnAdd);
+    });
+  };
 }
 
 export const view = new View();

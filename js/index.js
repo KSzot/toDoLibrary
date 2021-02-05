@@ -19,6 +19,7 @@ class Controller {
     this.view.bindClearInput();
     this.view.bindUpdateBook(this.handleUpdateBook);
     this.onListChanged(this.model.lists);
+    this.view.bindDeleteBook(this.handleDeleteBook);
     //this.view.windowsTarget();
   }
 
@@ -43,6 +44,10 @@ class Controller {
   };
   handleUpdateBook = (book) => {
     this.model.onUpdateBook(book);
+  };
+
+  handleDeleteBook = () => {
+    this.model.onDeleteBook();
   };
 }
 

@@ -98,12 +98,10 @@ class Model {
   onCurrentItem = (id, handler) => {
     this.currentItem = id;
     const obj = this.lists.find((e) => e.id == id);
-    console.log(obj);
     handler(obj);
   };
 
   onUpdateBook = (obj) => {
-    console.log(obj);
     this.lists = this.lists.map((el) =>
       el.id == this.currentItem
         ? {
@@ -115,7 +113,12 @@ class Model {
           }
         : el
     );
-    console.log(this.lists);
+    this._sortColumn('priority', false);
+    this._commit(this.lists);
+  };
+
+  onDeleteBook = () => {
+    this.lists = this.lists.filter((item) => item.id != this.currentItem);
     this._sortColumn('priority', false);
     this._commit(this.lists);
   };
