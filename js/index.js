@@ -22,6 +22,7 @@ class Controller {
     this.view.bindDeleteBook(this.handleDeleteBook);
     this.view.bindDeleteAllBook(this.handleDeleteAllBook);
     this.view.stopSubmit();
+    this.view.createOptionElement();
     //this.view.windowsTarget();
   }
 

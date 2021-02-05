@@ -15,6 +15,8 @@ class View {
     this.btnDeleteAll = document.getElementById('btnDeleteAll');
     this.btnNavbar = document.querySelector('.navbar-toggler');
     this.formSubmit = document.getElementById('formSubmit');
+    this.btnNewCategory = document.getElementById('btnNewCategory');
+    this.newCategoryInput = document.getElementById('newCategoryInput');
   }
 
   _getValues = () => {
@@ -201,6 +203,19 @@ class View {
     this.formSubmit.addEventListener('submit', (event) => {
       event.preventDefault();
       this.searchInput.blur();
+    });
+  };
+
+  createOptionElement = () => {
+    this.btnNewCategory.addEventListener('click', (event) => {
+      const option = document.createElement('option');
+      const id = parseInt(this.categorySelect.lastElementChild.value) + 1;
+      console.log(id);
+      const text = this.newCategoryInput.value;
+      option.value = id;
+      option.text = text;
+
+      this.categorySelect.appendChild(option);
     });
   };
 }
