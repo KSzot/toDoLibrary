@@ -59,7 +59,9 @@ class View {
 
   _clearInput = () => {
     this.authorInput.value = '';
+    this.authorInput.classList.remove('active');
     this.bookInput.value = '';
+    this.bookInput.classList.remove('active');
     this.categorySelect.selectedIndex = 0;
     this.priority.selectedIndex = 0;
   };
@@ -132,7 +134,7 @@ class View {
 
   bindClearInput = () => {
     this.btnClearOne.addEventListener('click', () => {
-      console.log('Wkrotce powstanie');
+      this._clearInput();
     });
   };
 
@@ -150,7 +152,9 @@ class View {
   };
   onInsertToInput = (obj) => {
     this.authorInput.value = obj.author;
+    this.authorInput.classList.add('active');
     this.bookInput.value = obj.title;
+    this.bookInput.classList.add('active');
 
     this._setValueonFormSelected(this.categorySelect, obj.category);
     this._setValueonFormSelected(this.priority, obj.priority);
