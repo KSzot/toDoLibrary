@@ -18,13 +18,18 @@ class Controller {
     this.view.bindEditOrDeleteItem(this.handleCurrentItem);
     this.view.bindClearInput();
     this.view.bindUpdateBook(this.handleUpdateBook);
-    this.onListChanged(this.model.lists);
+    this.initFun(this.model.lists, this.model.listsCategory);
     this.view.bindDeleteBook(this.handleDeleteBook);
     this.view.bindDeleteAllBook(this.handleDeleteAllBook);
     this.view.stopSubmit();
-    this.view.createOptionElement();
+    this.view.createOptionElement(this.handleCreateOption);
     //this.view.windowsTarget();
   }
+
+  initFun = (listBook, listCategory) => {
+    this.view.displayBooks(listBook);
+    this.view.displayCategory(listCategory);
+  };
 
   onListChanged = (lists) => {
     this.view.displayBooks(lists);
@@ -55,6 +60,10 @@ class Controller {
 
   handleDeleteAllBook = () => {
     this.model.onDeleteAllBook();
+  };
+
+  handleCreateOption = (text) => {
+    this.model.onSaveNewOption(text);
   };
 }
 

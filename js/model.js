@@ -1,6 +1,11 @@
 class Model {
   constructor() {
     this.lists = JSON.parse(localStorage.getItem('listOfBooks')) || [];
+    this.listsCategory = JSON.parse(localStorage.getItem('listOfCategory')) || [
+      'Kryminał',
+      'Poezja',
+      'Dramat',
+    ];
     this.sortDirection = false;
     this.temporaryList = [];
   }
@@ -126,6 +131,11 @@ class Model {
   onDeleteAllBook = () => {
     this.lists = [];
     this._commit(this.lists);
+  };
+  onSaveNewOption = (text) => {
+    localStorage.removeItem('listOfCategory');
+    this.listsCategory.push(text);
+    localStorage.setItem('listOfCategory', JSON.stringify(this.listsCategory));
   };
 }
 

@@ -206,15 +206,24 @@ class View {
     });
   };
 
-  createOptionElement = () => {
+  createOptionElement = (handler) => {
     this.btnNewCategory.addEventListener('click', (event) => {
       const option = document.createElement('option');
       const id = parseInt(this.categorySelect.lastElementChild.value) + 1;
-      console.log(id);
       const text = this.newCategoryInput.value;
       option.value = id;
       option.text = text;
 
+      this.categorySelect.appendChild(option);
+      handler(text);
+    });
+  };
+
+  displayCategory = (listCategory) => {
+    listCategory.forEach((element, index) => {
+      const option = document.createElement('option');
+      option.text = element;
+      option.value = index + 1;
       this.categorySelect.appendChild(option);
     });
   };
