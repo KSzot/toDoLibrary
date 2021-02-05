@@ -39,7 +39,17 @@
           <!-- Collapsible wrapper -->
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left links -->
+
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  aria-current="page"
+                  href="#"
+                  id="btnNewCategory"
+                  >Nowa kategoria</a
+                >
+              </li>
               <li class="nav-item">
                 <a
                   class="nav-link"
@@ -50,9 +60,6 @@
                   id="btnShowModal"
                   >Usuń zbiór</a
                 >
-              </li>
-              <li class="nav-item d-none">
-                <a class="nav-link" href="#">Link</a>
               </li>
             </ul>
             <!-- Left links -->
@@ -69,7 +76,7 @@
               </select>
             </div>
             <!-- Search form -->
-            <form class="d-flex input-group lessWidth">
+            <form class="d-flex input-group lessWidth" id="formSubmit">
               <input
                 type="search"
                 class="form-control"

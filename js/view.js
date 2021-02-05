@@ -14,6 +14,7 @@ class View {
     this.btnDelete = document.getElementById('btnDelete');
     this.btnDeleteAll = document.getElementById('btnDeleteAll');
     this.btnNavbar = document.querySelector('.navbar-toggler');
+    this.formSubmit = document.getElementById('formSubmit');
   }
 
   _getValues = () => {
@@ -112,6 +113,7 @@ class View {
 
   bindSearchInput = (handler) => {
     this.searchInput.addEventListener('input', (event) => {
+      event.preventDefault();
       if (this.categoryFilter.selectedIndex != 0) {
         const columnName = this.categoryFilter[
           this.categoryFilter.selectedIndex
@@ -192,6 +194,13 @@ class View {
       this._displayNone(this.btnUpdate);
       this._displayNone(this.btnDelete);
       this._displayInline(this.btnAdd);
+    });
+  };
+
+  stopSubmit = () => {
+    this.formSubmit.addEventListener('submit', (event) => {
+      event.preventDefault();
+      this.searchInput.blur();
     });
   };
 }

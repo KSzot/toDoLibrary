@@ -21,6 +21,7 @@ class Controller {
     this.onListChanged(this.model.lists);
     this.view.bindDeleteBook(this.handleDeleteBook);
     this.view.bindDeleteAllBook(this.handleDeleteAllBook);
+    this.view.stopSubmit();
     //this.view.windowsTarget();
   }
 
