@@ -1,12 +1,14 @@
 class Model {
   constructor() {
-    this.lists = [];
+    this.lists = JSON.parse(localStorage.getItem('listOfBooks')) || [];
     this.sortDirection = false;
     this.temporaryList = [];
   }
 
   _commit = (lists) => {
     this.onListChanged(lists);
+    localStorage.removeItem('listOfBooks');
+    localStorage.setItem('listOfBooks', JSON.stringify(lists));
   };
 
   sortColumn = (columnName) => {

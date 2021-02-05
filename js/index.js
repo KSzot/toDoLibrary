@@ -18,6 +18,7 @@ class Controller {
     this.view.bindEditOrDeleteItem(this.handleCurrentItem);
     this.view.bindClearInput();
     this.view.bindUpdateBook(this.handleUpdateBook);
+    this.onListChanged(this.model.lists);
     //this.view.windowsTarget();
   }
 
