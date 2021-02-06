@@ -19,6 +19,7 @@ class View {
     this.newCategoryInput = document.getElementById('newCategoryInput');
     this.btnShowHide = document.getElementById('btnShowHide');
     this.btnBack = document.getElementById('btnBack');
+    this.divMoveDown = document.getElementById('MoveDown');
   }
 
   _conditionFuntoGetValue(nameObj, refObj, text) {
@@ -37,7 +38,7 @@ class View {
     this._conditionFuntoGetValue(
       this.authorInput.value.length,
       passObj,
-      'Pole author jest wymagane'
+      'Pole autor jest wymagane'
     );
     this._conditionFuntoGetValue(
       this.bookInput.value.length,
@@ -66,6 +67,8 @@ class View {
       $('#exampleModalBadInput').modal('show');
       return false;
     } else {
+      this.divMoveDown.textContent = 'Dodano książkę pomyślnie!';
+      this.divMoveDown.classList.add('divMoveDown');
       const obj = {
         author: this.authorInput.value,
         title: this.bookInput.value,
@@ -167,6 +170,8 @@ class View {
   bindEditOrDeleteItem = (handler) => {
     this.tableBook.lastElementChild.addEventListener('click', (event) => {
       const id = event.target.dataset.value;
+      this.btnShowHide.textContent = 'Ukryj';
+      $('.multi-collapse').collapse('show');
       this._displayNone(this.btnAdd);
       this._displayNone(this.btnClearOne);
       this._displayInline(this.btnBack);
@@ -224,6 +229,8 @@ class View {
     this.btnDelete.addEventListener('click', (event) => {
       event.preventDefault();
       handler();
+      this.divMoveDown.textContent = 'Usunięto książkę pomyślnie!';
+      this.divMoveDown.classList.add('divMoveDown');
       this._displayNone(this.btnUpdate);
       this._displayNone(this.btnDelete);
       this._displayNone(this.btnBack);
@@ -287,6 +294,43 @@ class View {
       this._displayInline(this.btnAdd);
       this._displayInline(this.btnClearOne);
       this._clearInput();
+    });
+  };
+  whichAnimationEvent = () => {
+    var el = document.createElement('fakeelement');
+
+    var animations = {
+      animation: 'animationiteration',
+      OAnimation: 'oAnimationIteration',
+      MozAnimation: 'animationiteration',
+      WebkitAnimation: 'webkitAnimationIteration',
+    };
+
+    for (let t in animations) {
+      if (el.style[t] !== undefined) {
+        return animations[t];
+      }
+    }
+  };
+
+  removeAnimation = () => {
+    this.divMoveDown.addEventListener(this.whichAnimationEvent(), () => {
+      console.log('ampmEl event listener fired');
+      this.divMoveDown.classList.remove('divMoveDown');
+    });
+  };
+
+  afterSelectedDisplaySearch = () => {
+    this.categoryFilter.addEventListener('change', (event) => {
+      if (event.target.options.selectedIndex != 0) {
+        if (this.searchInput.parentNode.classList.contains('d-none')) {
+          this.searchInput.parentNode.classList.remove('d-none');
+        }
+      } else {
+        if (!this.searchInput.parentNode.classList.contains('d-none')) {
+          this.searchInput.parentNode.classList.add('d-none');
+        }
+      }
     });
   };
 }

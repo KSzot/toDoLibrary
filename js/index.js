@@ -25,6 +25,8 @@ class Controller {
     this.view.createOptionElement(this.handleCreateOption);
     this.view.showHideCreateBookForm();
     this.view.backToEditOrDeleteItem();
+    this.view.removeAnimation();
+    this.view.afterSelectedDisplaySearch();
     //this.view.windowsTarget();
   }
 
