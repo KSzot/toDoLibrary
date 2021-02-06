@@ -219,8 +219,6 @@ class View {
         this._displayNone(this.btnBack);
         this._displayInline(this.btnAdd);
         this._displayInline(this.btnClearOne);
-      } else {
-        alert('Uzupełnij pola');
       }
     });
   };

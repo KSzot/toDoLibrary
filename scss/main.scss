@@ -50,3 +50,9 @@
 .pos-relative {
   position: relative;
 }
+
+.w-xl-25 {
+  @media (min-width: 1200px) {
+    width: 25%;
+  }
+}

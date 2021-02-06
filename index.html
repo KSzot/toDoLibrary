@@ -12,8 +12,20 @@
         <!-- Container wrapper -->
         <div class="container-fluid">
           <!-- Navbar brand -->
-          <div class="container">
-            <a class="navbar-brand" href="#">
+          <div class="container d-flex mb-2 mb-lg-0">
+            <!-- Toggle button -->
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-mdb-toggle="collapse"
+              data-mdb-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
+            <a class="navbar-brand mx-auto mx-lg-0" href="#">
               <img
                 src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png"
                 height="30"
@@ -23,19 +35,6 @@
             </a>
           </div>
 
-          <!-- Toggle button -->
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-mdb-toggle="collapse"
-            data-mdb-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <i class="fas fa-bars"></i>
-          </button>
-
           <!-- Collapsible wrapper -->
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left links -->
@@ -44,7 +43,7 @@
               <li class="nav-item me-2 mb-2 mb-lg-0">
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  class="btn btn-success"
                   aria-current="page"
                   href="#"
                   data-mdb-toggle="modal"
@@ -56,7 +55,7 @@
               <li class="nav-item me-2">
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  class="btn btn-warning"
                   aria-current="page"
                   href="#"
                   data-mdb-toggle="modal"
@@ -68,7 +67,9 @@
               </li>
             </ul>
             <!-- Left links -->
-            <div class="d-flex input-group lessWidth me-lg-2 mb-2 mb-lg-0">
+            <div
+              class="d-flex input-group lessWidth me-lg-2 mb-2 mb-lg-0 w-xl-25"
+            >
               <select
                 class="form-select"
                 aria-label="Default select example"
@@ -81,7 +82,11 @@
               </select>
             </div>
             <!-- Search form -->
-            <form class="d-flex input-group lessWidth d-none" id="formSubmit">
+            <form
+              class="d-flex input-group lessWidth w-xl-25 d-none"
+              autocomplete="off"
+              id="formSubmit"
+            >
               <input
                 type="search"
                 class="form-control"
@@ -192,8 +197,8 @@
         </div>
       </div>
 
-      <div class="container mt-3">
-        <h3 class="mb-2">Moja lista ksiązek</h3>
+      <div class="container mt-4">
+        <h3 class="mb-2 text-center">Moja lista ksiązek</h3>
         <p class="text-start" id="itemCounter">Licznik pozycji: 0</p>
       </div>
 
@@ -336,7 +341,7 @@
               class="btn btn-warning"
               data-mdb-dismiss="modal"
             >
-              Zamknij
+              Anuluj
             </button>
           </div>
         </div>
@@ -379,7 +384,7 @@
               class="btn btn-warning"
               data-mdb-dismiss="modal"
             >
-              Zamknij
+              Anuluj
             </button>
           </div>
         </div>
