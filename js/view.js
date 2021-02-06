@@ -17,6 +17,8 @@ class View {
     this.formSubmit = document.getElementById('formSubmit');
     this.btnNewCategory = document.getElementById('btnNewCategory');
     this.newCategoryInput = document.getElementById('newCategoryInput');
+    this.btnShowHide = document.getElementById('btnShowHide');
+    this.btnBack = document.getElementById('btnBack');
   }
 
   _getValues = () => {
@@ -132,6 +134,8 @@ class View {
     this.tableBook.lastElementChild.addEventListener('click', (event) => {
       const id = event.target.dataset.value;
       this._displayNone(this.btnAdd);
+      this._displayNone(this.btnClearOne);
+      this._displayInline(this.btnBack);
       this._displayInline(this.btnDelete);
       this._displayInline(this.btnUpdate);
       handler(id);
@@ -173,7 +177,9 @@ class View {
         handler(this._getValues());
         this._displayNone(this.btnUpdate);
         this._displayNone(this.btnDelete);
+        this._displayNone(this.btnBack);
         this._displayInline(this.btnAdd);
+        this._displayInline(this.btnClearOne);
       } else {
         alert('Uzupełnij pola');
       }
@@ -186,7 +192,9 @@ class View {
       handler();
       this._displayNone(this.btnUpdate);
       this._displayNone(this.btnDelete);
+      this._displayNone(this.btnBack);
       this._displayInline(this.btnAdd);
+      this._displayInline(this.btnClearOne);
     });
   };
 
@@ -195,7 +203,9 @@ class View {
       handler();
       this._displayNone(this.btnUpdate);
       this._displayNone(this.btnDelete);
+      this._displayNone(this.btnBack);
       this._displayInline(this.btnAdd);
+      this._displayInline(this.btnClearOne);
     });
   };
 
@@ -225,6 +235,24 @@ class View {
       option.text = element;
       option.value = index + 1;
       this.categorySelect.appendChild(option);
+    });
+  };
+
+  showHideCreateBookForm = () => {
+    this.btnShowHide.addEventListener('click', () => {
+      this.btnShowHide.textContent =
+        this.btnShowHide.textContent.trim() == 'Ukryj' ? 'Pokaż' : 'Ukryj';
+    });
+  };
+
+  backToEditOrDeleteItem = () => {
+    this.btnBack.addEventListener('click', () => {
+      this._displayNone(this.btnUpdate);
+      this._displayNone(this.btnDelete);
+      this._displayNone(this.btnBack);
+      this._displayInline(this.btnAdd);
+      this._displayInline(this.btnClearOne);
+      this._clearInput();
     });
   };
 }
