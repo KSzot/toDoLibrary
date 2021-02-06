@@ -21,14 +21,50 @@ class View {
     this.btnBack = document.getElementById('btnBack');
   }
 
+  _conditionFuntoGetValue(nameObj, refObj, text) {
+    if (nameObj == 0) {
+      refObj.fields = true;
+      refObj.stringBuilder += `${text}.\n`;
+    }
+  }
+
   _getValues = () => {
-    if (
-      this.authorInput.value.length === 0 ||
-      this.bookInput.value.length === 0 ||
-      this.categorySelect.selectedIndex == 0 ||
-      this.priority.selectedIndex == 0
-    ) {
-      return null;
+    const passObj = {
+      fields: false,
+      stringBuilder: '',
+    };
+
+    this._conditionFuntoGetValue(
+      this.authorInput.value.length,
+      passObj,
+      'Pole author jest wymagane'
+    );
+    this._conditionFuntoGetValue(
+      this.bookInput.value.length,
+      passObj,
+      'Pole tytuł książki jest wymagane'
+    );
+    this._conditionFuntoGetValue(
+      this.categorySelect.selectedIndex,
+      passObj,
+      'Pole kategoria jest wymagane'
+    );
+    this._conditionFuntoGetValue(
+      this.priority.selectedIndex,
+      passObj,
+      'Pole piorytet jest wymagane'
+    );
+    if (passObj.fields) {
+      console.log(passObj.stringBuilder);
+      const d = document.getElementById('modalBodyBadInput');
+      if (d.lastElementChild) {
+        d.removeChild(d.lastElementChild);
+      }
+      const elP = document.createElement('p');
+      elP.innerText = passObj.stringBuilder;
+      d.appendChild(elP);
+      $('#exampleModalBadInput').modal('show');
+      return false;
     } else {
       const obj = {
         author: this.authorInput.value,
@@ -99,8 +135,6 @@ class View {
       event.preventDefault();
       if (this._getValues()) {
         handler(this._getValues());
-      } else {
-        alert('Uzupełnij pola');
       }
     });
   };
