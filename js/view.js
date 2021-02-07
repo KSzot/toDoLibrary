@@ -1,3 +1,4 @@
+import TableCSVExporter from './tableCsvExport';
 class View {
   constructor() {
     this.authorInput = document.getElementById('author');
@@ -20,6 +21,8 @@ class View {
     this.btnShowHide = document.getElementById('btnShowHide');
     this.btnBack = document.getElementById('btnBack');
     this.divMoveDown = document.getElementById('MoveDown');
+    this.btnExportCsv = document.getElementById('btnExportCsv');
+    this.btnExportXls = document.getElementById('btnExportXls');
   }
 
   _conditionFuntoGetValue(nameObj, refObj, text) {
@@ -56,7 +59,6 @@ class View {
       'Pole piorytet jest wymagane'
     );
     if (passObj.fields) {
-      console.log(passObj.stringBuilder);
       const d = document.getElementById('modalBodyBadInput');
       if (d.lastElementChild) {
         d.removeChild(d.lastElementChild);
@@ -146,7 +148,6 @@ class View {
     this.tableBook.tHead.rows.forEach((element) => {
       element.addEventListener('click', (event) => {
         event.preventDefault();
-        //console.log(event.target.dataset.value);
         handler(event.target.dataset.value);
       });
     });
@@ -313,7 +314,6 @@ class View {
 
   removeAnimation = () => {
     this.divMoveDown.addEventListener(this.whichAnimationEvent(), () => {
-      console.log('ampmEl event listener fired');
       this.divMoveDown.classList.remove('divMoveDown');
     });
   };
@@ -329,6 +329,45 @@ class View {
           this.searchInput.parentNode.classList.add('d-none');
         }
       }
+    });
+  };
+
+  exportTableToCsv = () => {
+    this.btnExportCsv.addEventListener('click', () => {
+      const exporter = new TableCSVExporter(this.tableBook);
+      const csvOutput = exporter.convertToCSV();
+      const csvBlob = new Blob([csvOutput], { type: 'text/csv' });
+      const blobUrl = URL.createObjectURL(csvBlob);
+      const anchorElement = document.createElement('a');
+
+      anchorElement.href = blobUrl;
+      anchorElement.download = 'table-export.csv';
+      anchorElement.click();
+
+      setTimeout(() => {
+        URL.revokeObjectURL(blobUrl);
+      }, 500);
+    });
+  };
+
+  exportTableToXls = () => {
+    this.btnExportXls.addEventListener('click', () => {
+      $('#tableBook').table2excel({
+        exclude: '.noExport',
+        name: 'Data',
+        filename: 'tableBook',
+      });
+
+      //   let tableData = document.getElementById('tableBook').outerHTML;
+      //   tableData = tableData.replace(/<A[^>]*>|<\/A>/g, '');
+      //   tableData = tableData.replace(/<input[^>]*>|<\/input>/gi, '');
+      //   let a = document.createElement('a');
+      //   let dataType = 'data:application/vnd.ms-excel';
+      //   a.href = `data:application/vnd.ms-excel, ${encodeURIComponent(
+      //     tableData
+      //   )}`;
+      //   a.download = 'tableBook.xls';
+      //   a.click();
     });
   };
 }

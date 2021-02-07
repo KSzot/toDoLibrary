@@ -200,6 +200,14 @@
       <div class="container mt-4">
         <h3 class="mb-2 text-center">Moja lista ksiązek</h3>
         <p class="text-start" id="itemCounter">Licznik pozycji: 0</p>
+        <div class="col-12 col-lg-10 d-flex justify-content-start flex-wrap">
+          <button type="button" class="btn btn-primary mx-2" id="btnExportCsv">
+            Eksportuj do csv
+          </button>
+          <button type="button" class="btn btn-primary" id="btnExportXls">
+            Eksportuj do xls
+          </button>
+        </div>
       </div>
 
       <div class="container">
@@ -391,5 +399,6 @@
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
   </body>
 </html>

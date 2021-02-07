@@ -27,6 +27,8 @@ class Controller {
     this.view.backToEditOrDeleteItem();
     this.view.removeAnimation();
     this.view.afterSelectedDisplaySearch();
+    this.view.exportTableToCsv();
+    this.view.exportTableToXls();
     //this.view.windowsTarget();
   }
 
