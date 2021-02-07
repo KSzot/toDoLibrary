@@ -10,20 +10,66 @@ class Model {
     this.temporaryList = [];
   }
 
-  _commit = (lists) => {
-    this.onListChanged(lists);
+  _saveInLocalStorage = (lists) => {
     localStorage.removeItem('listOfBooks');
     localStorage.setItem('listOfBooks', JSON.stringify(lists));
   };
+  _commit = (lists) => {
+    this.onListChanged(lists);
+  };
 
-  sortColumn = (columnName) => {
-    //this.temporaryList = this.lists;
-    // if (this.temporaryList.length == 0) {
-    //   this.temporaryList = [...this.lists];
-    // }
+  sortColumn = (columnName, obj) => {
     this.sortDirection = !this.sortDirection;
-    this._sortColumn(columnName, this.sortDirection);
-    this._commit(this.lists);
+    if (obj.isSearch && obj.columnName != undefined) {
+      this._sortColumnTemp(columnName, this.sortDirection);
+      this._commit(this.temporaryList);
+    } else {
+      this._sortColumn(columnName, this.sortDirection);
+      this._commit(this.lists);
+    }
+  };
+
+  _sortColumnTemp = (columnName, sortDirection) => {
+    if (this.temporaryList.length > 0) {
+      const dataType = typeof this.temporaryList[0][columnName];
+      switch (dataType) {
+        case 'number':
+          this._sortNumberColumnTemp(sortDirection, columnName);
+          break;
+        case 'string':
+          this._sortStringColumnTemp(sortDirection, columnName);
+          break;
+      }
+    }
+  };
+
+  _sortNumberColumnTemp = (sort, columnName) => {
+    this.temporaryList = this.temporaryList.sort((p1, p2) =>
+      sort ? p1[columnName] - p2[columnName] : p2[columnName] - p1[columnName]
+    );
+  };
+  _sortStringColumnTemp = (sort, columnName) => {
+    this.temporaryList = this.temporaryList.sort((p1, p2) => {
+      let x = p1[columnName].toLowerCase();
+      let y = p2[columnName].toLowerCase();
+      if (this.sortDirection) {
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      } else {
+        if (x < y) {
+          return 1;
+        }
+        if (x > y) {
+          return -1;
+        }
+        return 0;
+      }
+    });
   };
 
   _sortColumn = (columnName, sortDirection) => {
@@ -73,8 +119,8 @@ class Model {
     this.onListChanged = callback;
   };
 
-  addBook = (obj) => {
-    const { author, title, category, priority } = obj;
+  addBook = (book, obj) => {
+    const { author, title, category, priority } = book;
     const element = {
       title: title,
       author: author,
@@ -83,12 +129,16 @@ class Model {
       id: new Date().getTime(),
     };
     this.lists.push(element);
-    this._sortColumn('priority', false);
-    this._commit(this.lists);
+    this._saveInLocalStorage(this.lists);
+    if (obj.isSearch && obj.columnName != undefined) {
+      this.filterByValue(obj.isSearch, obj.columnName);
+    } else {
+      this._sortColumn('priority', false);
+      this._commit(this.lists);
+    }
   };
 
   filterByValue = (value, columnName) => {
-    console.log(value);
     this.temporaryList = [
       ...this.lists.filter((obj) =>
         Object.keys(obj).some((key) =>
@@ -106,30 +156,41 @@ class Model {
     handler(obj);
   };
 
-  onUpdateBook = (obj) => {
+  onUpdateBook = (book, obj) => {
     this.lists = this.lists.map((el) =>
       el.id == this.currentItem
         ? {
-            title: obj.title,
-            author: obj.author,
-            category: obj.category,
-            priority: parseInt(obj.priority),
+            title: book.title,
+            author: book.author,
+            category: book.category,
+            priority: parseInt(book.priority),
             id: this.currentItem,
           }
         : el
     );
-    this._sortColumn('priority', false);
-    this._commit(this.lists);
+    this._saveInLocalStorage(this.lists);
+    if (obj.isSearch && obj.columnName != undefined) {
+      this.filterByValue(obj.isSearch, obj.columnName);
+    } else {
+      this._sortColumn('priority', false);
+      this._commit(this.lists);
+    }
   };
 
-  onDeleteBook = () => {
+  onDeleteBook = (obj) => {
     this.lists = this.lists.filter((item) => item.id != this.currentItem);
-    this._sortColumn('priority', false);
-    this._commit(this.lists);
+    this._saveInLocalStorage(this.lists);
+    if (obj.isSearch && obj.columnName != undefined) {
+      this.filterByValue(obj.isSearch, obj.columnName);
+    } else {
+      this._sortColumn('priority', false);
+      this._commit(this.lists);
+    }
   };
 
   onDeleteAllBook = () => {
     this.lists = [];
+    this._saveInLocalStorage(this.lists);
     this._commit(this.lists);
   };
   onSaveNewOption = (text) => {

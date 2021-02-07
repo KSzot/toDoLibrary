@@ -82,6 +82,14 @@ class View {
     }
   };
 
+  _getFilterInput = () => {
+    return {
+      isSearch: this.searchInput.value,
+      columnName: this.categoryFilter[this.categoryFilter.selectedIndex].dataset
+        .value,
+    };
+  };
+
   _generateTable = (table, data) => {
     for (let element of data) {
       let row = table.insertRow();
@@ -139,7 +147,7 @@ class View {
     this.btnAdd.addEventListener('click', (event) => {
       event.preventDefault();
       if (this._getValues()) {
-        handler(this._getValues());
+        handler(this._getValues(), this._getFilterInput());
       }
     });
   };
@@ -148,7 +156,7 @@ class View {
     this.tableBook.tHead.rows.forEach((element) => {
       element.addEventListener('click', (event) => {
         event.preventDefault();
-        handler(event.target.dataset.value);
+        handler(event.target.dataset.value, this._getFilterInput());
       });
     });
   };
@@ -214,7 +222,7 @@ class View {
     this.btnUpdate.addEventListener('click', (event) => {
       event.preventDefault();
       if (this._getValues()) {
-        handler(this._getValues());
+        handler(this._getValues(), this._getFilterInput());
         this._displayNone(this.btnUpdate);
         this._displayNone(this.btnDelete);
         this._displayNone(this.btnBack);
@@ -227,7 +235,7 @@ class View {
   bindDeleteBook = (handler) => {
     this.btnDelete.addEventListener('click', (event) => {
       event.preventDefault();
-      handler();
+      handler(this._getFilterInput());
       this.divMoveDown.textContent = 'Usunięto książkę pomyślnie!';
       this.divMoveDown.classList.add('divMoveDown');
       this._displayNone(this.btnUpdate);

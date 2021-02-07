@@ -41,12 +41,12 @@ class Controller {
     this.view.displayBooks(lists);
   };
 
-  handleAddBook = (books) => {
-    this.model.addBook(books);
+  handleAddBook = (books, obj) => {
+    this.model.addBook(books, obj);
   };
 
-  handleSortColumn = (columnName) => {
-    this.model.sortColumn(columnName);
+  handleSortColumn = (columnName, obj) => {
+    this.model.sortColumn(columnName, obj);
   };
 
   handleSearchInput = (value, columnName) => {
@@ -56,12 +56,12 @@ class Controller {
   handleCurrentItem = (id) => {
     this.model.onCurrentItem(id, this.view.onInsertToInput);
   };
-  handleUpdateBook = (book) => {
-    this.model.onUpdateBook(book);
+  handleUpdateBook = (book, obj) => {
+    this.model.onUpdateBook(book, obj);
   };
 
-  handleDeleteBook = () => {
-    this.model.onDeleteBook();
+  handleDeleteBook = (obj) => {
+    this.model.onDeleteBook(obj);
   };
 
   handleDeleteAllBook = () => {
