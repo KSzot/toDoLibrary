@@ -223,6 +223,8 @@ class View {
       event.preventDefault();
       if (this._getValues()) {
         handler(this._getValues(), this._getFilterInput());
+        this.divMoveDown.textContent = 'Zaktualizowano książkę pomyślnie!';
+        this.divMoveDown.classList.add('divMoveDown');
         this._displayNone(this.btnUpdate);
         this._displayNone(this.btnDelete);
         this._displayNone(this.btnBack);
@@ -249,6 +251,8 @@ class View {
   bindDeleteAllBook = (handler) => {
     this.btnDeleteAll.addEventListener('click', () => {
       handler();
+      this.divMoveDown.textContent = 'Usunięto wszystkie książki!';
+      this.divMoveDown.classList.add('divMoveDown');
       this._displayNone(this.btnUpdate);
       this._displayNone(this.btnDelete);
       this._displayNone(this.btnBack);
